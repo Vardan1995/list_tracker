@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control panel</title>
+</head>
+
+<body>
+    <input type="url" id="url">
+    <button id="btn">Add</button>
+</body>
+<script>
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", localStorage.token);
+    myHeaders.append("Content-Type", "application/json");
+
+    btn.addEventListener("click", function () {
+        var raw = JSON.stringify({
+            "link": url.value
+        });
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("/api/user/filter", requestOptions)
+            .then(response => response.text())
+            .then(result => alert("filter added successfully"))
+            .catch(error => alert(error.message));
+    })
+
+
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="uname" placeholder="username"><br><br>
+    <input type="text" id="email" placeholder="email"><br><br>
+    <button id="sign">sign in</button>
+</body>
+<script>
+    const base_url = 'http://127.0.0.1:5000/api/user'
+    sign.addEventListener('click', () => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "username": uname.value,
+            "email": email.value
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("/api/auth/create", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                localStorage.token = "Bearer " + result.token
+                location.href = "/panel.html"
+            })
+            .catch(error => alert("error"));
+    })
+
+</script>
+
+</html>
