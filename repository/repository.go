@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/Vardan1995/filter_notifyer/entity"
+import "github.com/Vardan1995/list_tracker/entity"
 
 type UserRepository interface {
 	SaveUser(user *entity.User) error

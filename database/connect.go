@@ -3,7 +3,7 @@ package database
 import (
 	"fmt"
 
-	"github.com/Vardan1995/filter_notifyer/entity"
+	"github.com/Vardan1995/list_tracker/entity"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

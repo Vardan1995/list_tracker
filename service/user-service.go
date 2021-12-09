@@ -3,9 +3,9 @@ package service
 import (
 	"time"
 
-	"github.com/Vardan1995/filter_notifyer/config"
-	"github.com/Vardan1995/filter_notifyer/entity"
-	"github.com/Vardan1995/filter_notifyer/repository"
+	"github.com/Vardan1995/list_tracker/config"
+	"github.com/Vardan1995/list_tracker/entity"
+	"github.com/Vardan1995/list_tracker/repository"
 	"github.com/golang-jwt/jwt"
 )
 

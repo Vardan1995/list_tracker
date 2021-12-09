@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"github.com/Vardan1995/filter_notifyer/entity"
-	"github.com/Vardan1995/filter_notifyer/service"
+	"github.com/Vardan1995/list_tracker/entity"
+	"github.com/Vardan1995/list_tracker/service"
 	"github.com/gofiber/fiber/v2"
 )
 

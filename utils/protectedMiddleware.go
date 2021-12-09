@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/Vardan1995/filter_notifyer/config"
+	"github.com/Vardan1995/list_tracker/config"
 	"github.com/gofiber/fiber/v2"
 	jwtware "github.com/gofiber/jwt/v2"
 	"github.com/golang-jwt/jwt/v4"

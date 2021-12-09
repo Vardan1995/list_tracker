@@ -1,6 +1,6 @@
 package service
 
-import "github.com/Vardan1995/filter_notifyer/entity"
+import "github.com/Vardan1995/list_tracker/entity"
 
 type UserService interface {
 	CreateUser(user *entity.User) (*entity.User, string, error)

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/Vardan1995/filter_notifyer/entity"
-	"github.com/Vardan1995/filter_notifyer/repository"
+	"github.com/Vardan1995/list_tracker/entity"
+	"github.com/Vardan1995/list_tracker/repository"
 )
 
 var (

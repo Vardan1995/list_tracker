@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Vardan1995/filter_notifyer/entity"
-	"github.com/Vardan1995/filter_notifyer/service"
-	"github.com/Vardan1995/filter_notifyer/utils"
+	"github.com/Vardan1995/list_tracker/entity"
+	"github.com/Vardan1995/list_tracker/service"
+	"github.com/Vardan1995/list_tracker/utils"
 	"github.com/gocolly/colly/v2"
 )
 

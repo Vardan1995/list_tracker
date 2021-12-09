@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/Vardan1995/filter_notifyer/core"
-	"github.com/Vardan1995/filter_notifyer/database"
-	"github.com/Vardan1995/filter_notifyer/router"
+	"github.com/Vardan1995/list_tracker/core"
+	"github.com/Vardan1995/list_tracker/database"
+	"github.com/Vardan1995/list_tracker/router"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )

@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/Vardan1995/filter_notifyer/controller"
-	"github.com/Vardan1995/filter_notifyer/utils"
+	"github.com/Vardan1995/list_tracker/controller"
+	"github.com/Vardan1995/list_tracker/utils"
 	"github.com/gofiber/fiber/v2"
 )
 

@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/Vardan1995/filter_notifyer/database"
-	"github.com/Vardan1995/filter_notifyer/entity"
+	"github.com/Vardan1995/list_tracker/database"
+	"github.com/Vardan1995/list_tracker/entity"
 )
 
 type filter_repo struct{}

@@ -1,4 +1,4 @@
-module github.com/Vardan1995/filter_notifyer
+module github.com/Vardan1995/list_tracker
 
 go 1.17
 
