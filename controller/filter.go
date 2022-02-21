@@ -1,6 +1,9 @@
 package controller
 
 import (
+	"fmt"
+	"net/url"
+
 	"github.com/Vardan1995/list_tracker/entity"
 	"github.com/Vardan1995/list_tracker/service"
 	"github.com/gofiber/fiber/v2"
@@ -17,6 +20,14 @@ func PushTracker(c *fiber.Ctx) error {
 	if err := c.BodyParser(&filter); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Enter required data correctly!"})
 	}
+
+	u, err := url.Parse(filter.Link)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Maliformed url!"})
+
+	}
+
+	fmt.Printf("Host: %v\n", u.Host) //TODO validate host` list.am/...`
 
 	if _, err := filterService.CreateFilter(&filter); err != nil {
 		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Couldn't create filter", "data": err})
