@@ -10,7 +10,7 @@ import (
 func SendEmail(text string, to_email string) {
 	// Sender data.
 	from := "vardbax1995@mail.ru"
-	password := "4A9bX3ZQc39asx2puXAq"
+	password := "rf80FECPkq7wv83gYfQB"
 
 	// Receiver email address.
 	to := []string{

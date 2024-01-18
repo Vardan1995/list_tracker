@@ -4,8 +4,8 @@ import (
 	"github.com/Vardan1995/list_tracker/core"
 	"github.com/Vardan1995/list_tracker/database"
 	"github.com/Vardan1995/list_tracker/router"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/middleware/cors"
 )
 
 func main() {

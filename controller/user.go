@@ -1,20 +1,23 @@
 package controller
 
 import (
+	"encoding/json"
+
 	"github.com/Vardan1995/list_tracker/entity"
 	"github.com/Vardan1995/list_tracker/service"
-	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v3"
 )
 
 var (
 	userService = service.NewUserService()
 )
 
-func CreateUser(c *fiber.Ctx) error {
+func CreateUser(c fiber.Ctx) error {
 	user := entity.User{}
-	if err := c.BodyParser(&user); err != nil {
+	if err := json.Unmarshal(c.Request().Body(), &user); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Enter required data correctly!"})
 	}
+
 	_, token, err := userService.CreateUser(&user)
 
 	if err != nil {
@@ -24,7 +27,7 @@ func CreateUser(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"token": token})
 }
 
-func GetUser(c *fiber.Ctx) error {
+func GetUser(c fiber.Ctx) error {
 	id := c.Locals("id").(uint)
 	user := entity.User{}
 
@@ -36,18 +39,18 @@ func GetUser(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"user": user, "success": "true"})
 }
 
-func Login(c *fiber.Ctx) error {
+func Login(c fiber.Ctx) error {
 	type UserData struct {
 		Username string `json:"username"`
 		Email    string `json:"email"`
 	}
 
 	var ud UserData
-	err := c.BodyParser(&ud)
+	// err := c.BodyParser(&ud)
 	user := entity.User{}
-	if err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "can`t parse body"})
-	}
+	// if err != nil {
+	// 	return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "can`t parse body"})
+	// }
 
 	token, err := userService.LoginUser(&user, ud.Username, ud.Email)
 

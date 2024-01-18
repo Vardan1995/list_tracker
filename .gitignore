@@ -1,2 +1,2 @@
-gorm.db
+gorm.sqlite
 .env
