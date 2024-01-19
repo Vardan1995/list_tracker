@@ -14,6 +14,7 @@ var ArchiveExist = service.NewArchiveService().CreateIfNotExists
 var filterService = service.NewFilterService()
 var userService = service.NewUserService()
 
+// Visits links based on provided filters and sends an email if new items are found.
 func Run(filters []entity.Filter, email string) {
 
 	var result string
@@ -40,6 +41,7 @@ func Run(filters []entity.Filter, email string) {
 
 }
 
+// Track continuously monitors users' filters and runs the tracking process.
 func Track() {
 	for {
 		var users []entity.User

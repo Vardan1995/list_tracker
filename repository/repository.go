@@ -4,6 +4,7 @@ import "github.com/Vardan1995/list_tracker/entity"
 
 type UserRepository interface {
 	SaveUser(user *entity.User) error
+	UserWithFilters(user *entity.User) error
 	FindUserByUsernameAndEmail(user *entity.User, username, email string) error
 	FindUser(user *entity.User, id uint) error
 	FindUsers(user *[]entity.User) error
