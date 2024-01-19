@@ -5,35 +5,97 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control panel</title>
+    <title>Control Panel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .panel-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        input[type="url"] {
+            width: calc(100% - 20px);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1.1em;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .panel-container {
+                padding: 20px;
+            }
+
+            input[type="url"],
+            button {
+                padding: 10px;
+                font-size: 5vw;
+                /* Responsive font size */
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <input type="url" id="url">
-    <button id="btn">Add</button>
+    <div class="panel-container">
+        <input type="url" id="url" placeholder="Enter URL">
+        <button id="btn">Add</button>
+    </div>
+    <script>
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", localStorage.token);
+        myHeaders.append("Content-Type", "application/json");
+
+        btn.addEventListener("click", function () {
+            var raw = JSON.stringify({
+                "link": url.value
+            });
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            fetch("/api/user/filter", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log("filter added successfully"))
+                .catch(error => alert(error.message));
+        })
+
+
+    </script>
 </body>
-<script>
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", localStorage.token);
-    myHeaders.append("Content-Type", "application/json");
-
-    btn.addEventListener("click", function () {
-        var raw = JSON.stringify({
-            "link": url.value
-        });
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        fetch("/api/user/filter", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log("filter added successfully"))
-            .catch(error => alert(error.message));
-    })
-
-
-</script>
 
 </html>

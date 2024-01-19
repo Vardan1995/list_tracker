@@ -5,42 +5,103 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Responsive Design</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1.1em;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            input[type="text"],
+            button {
+                padding: 10px;
+                font-size: 5vw;
+                /* Responsive font size */
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <input type="text" id="uname" placeholder="username"><br><br>
-    <input type="text" id="email" placeholder="email"><br><br>
-    <button id="sign">sign in</button>
+    <div class="container">
+        <input type="text" id="uname" placeholder="Username"><br>
+        <input type="text" id="email" placeholder="Email"><br>
+        <button id="sign">Sign In</button>
+    </div>
+    <script>
+        const base_url = 'http://127.0.0.1:5000/api/user';
+        sign.addEventListener('click', () => {
+
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                "username": uname.value,
+                "email": email.value
+            });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("/api/auth/create", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    localStorage.token = "Bearer " + result.token
+                    location.href = "/panel.html"
+                })
+                .catch(error => alert("error"));
+        })
+    </script>
 </body>
-<script>
-    const base_url = 'http://127.0.0.1:5000/api/user'
-    sign.addEventListener('click', () => {
-
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
-            "username": uname.value,
-            "email": email.value
-        });
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("/api/auth/create", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                localStorage.token = "Bearer " + result.token
-                location.href = "/panel.html"
-            })
-            .catch(error => alert("error"));
-    })
-
-</script>
 
 </html>
