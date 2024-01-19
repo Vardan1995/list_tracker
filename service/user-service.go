@@ -20,7 +20,6 @@ func NewUserService() UserService {
 }
 
 func (*user_service) CreateUser(user *entity.User) (*entity.User, string, error) {
-
 	if err := userRepository.SaveUser(user); err != nil {
 		return nil, "", err
 	}
@@ -35,26 +34,17 @@ func (*user_service) LoginUser(user *entity.User, username, email string) (strin
 	if err := userRepository.FindUserByUsernameAndEmail(user, username, email); err != nil {
 		return "", err
 	}
-	t, err := generateJWT(user.ID)
-	if err != nil {
-		return "", err
-	}
-	return t, err
+
+	return generateJWT(user.ID)
 }
 
 func (*user_service) GetUser(user *entity.User, id uint) (*entity.User, error) {
 
-	if err := userRepository.FindUser(user, id); err != nil {
-		return nil, err
-	}
-	return user, nil
+	return user, userRepository.FindUser(user, id)
 }
-func (*user_service) GetUsers(users *[]entity.User) error {
 
-	if err := userRepository.FindUsers(users); err != nil {
-		return err
-	}
-	return nil
+func (*user_service) GetUsers(users *[]entity.User) error {
+	return userRepository.FindUsers(users)
 }
 func generateJWT(id uint) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
