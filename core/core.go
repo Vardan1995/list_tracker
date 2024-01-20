@@ -11,11 +11,11 @@ import (
 )
 
 var ArchiveExist = service.NewArchiveService().CreateIfNotExists
-var filterService = service.NewFilterService()
+var preferenceService = service.NewPreferenceService()
 var userService = service.NewUserService()
 
-// Visits links based on provided filters and sends an email if new items are found.
-func Run(filters []entity.Filter, email string) {
+// Visits links based on provided preferences and sends an email if new items are found.
+func Run(preferences []entity.Preference, email string) {
 
 	var result string
 	c := colly.NewCollector()
@@ -31,7 +31,7 @@ func Run(filters []entity.Filter, email string) {
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println("Visiting link from ", email)
 	})
-	for _, v := range filters {
+	for _, v := range preferences {
 		c.Visit(v.Link)
 	}
 	if result != "" {
@@ -41,7 +41,7 @@ func Run(filters []entity.Filter, email string) {
 
 }
 
-// Track continuously monitors users' filters and runs the tracking process.
+// Track continuously monitors users' preferences and runs the tracking process.
 func Track() {
 	for {
 		var users []entity.User
@@ -50,14 +50,14 @@ func Track() {
 		}
 
 		for _, user := range users {
-			var filters []entity.Filter
-			err := filterService.GetUserFilter(&filters, user.ID)
+			var preferences []entity.Preference
+			err := preferenceService.GetUserPreference(&preferences, user.ID)
 			if err != nil {
 				fmt.Printf("err: %v\n", err)
 
 			}
 
-			Run(filters, user.Email)
+			Run(preferences, user.Email)
 
 		}
 		time.Sleep(time.Second * 10)

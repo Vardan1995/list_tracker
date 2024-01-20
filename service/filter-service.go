@@ -6,31 +6,31 @@ import (
 )
 
 var (
-	filterRepository = repository.NewFilterRepository()
+	preferenceRepository = repository.NewPreferenceRepository()
 )
 
-type filter_service struct{}
+type preference_service struct{}
 
-func NewFilterService() FilterService {
-	return &filter_service{}
+func NewPreferenceService() PreferenceService {
+	return &preference_service{}
 }
 
-func (*filter_service) CreateFilter(filter *entity.Filter) (*entity.Filter, error) {
-	if err := filterRepository.SaveFilter(filter); err != nil {
+func (*preference_service) CreatePreference(preference *entity.Preference) (*entity.Preference, error) {
+	if err := preferenceRepository.SavePreference(preference); err != nil {
 		return nil, err
 	}
-	return filter, nil
+	return preference, nil
 
 }
 
-func (*filter_service) GetUserFilter(filters *[]entity.Filter, id uint) error {
-	if err := filterRepository.FindFiltersByUserId(filters, id); err != nil {
+func (*preference_service) GetUserPreference(preferences *[]entity.Preference, id uint) error {
+	if err := preferenceRepository.FindPreferencesByUserId(preferences, id); err != nil {
 		return err
 	}
 	return nil
 }
-func (*filter_service) GetFilters(filters *[]entity.Filter) error {
-	if err := filterRepository.FindFilters(filters); err != nil {
+func (*preference_service) GetPreferences(preferences *[]entity.Preference) error {
+	if err := preferenceRepository.FindPreferences(preferences); err != nil {
 		return err
 	}
 	return nil

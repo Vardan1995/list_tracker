@@ -12,7 +12,7 @@ import (
 func ConnectDB() {
 	var err error
 
-	DB, err = gorm.Open(sqlite.Open("gorm.sqlite"), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
+	DB, err = gorm.Open(sqlite.Open("gorm.sqlite"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
 
 	if err != nil {
 		panic("failed to connect database")
@@ -20,7 +20,7 @@ func ConnectDB() {
 
 	fmt.Println("Connection Opened to Database")
 	DB.AutoMigrate(&entity.User{})
-	DB.AutoMigrate(&entity.Filter{})
+	DB.AutoMigrate(&entity.Preference{})
 	DB.AutoMigrate(&entity.Archive{})
 	fmt.Println("Database Migrated")
 }

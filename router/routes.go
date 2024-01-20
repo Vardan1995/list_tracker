@@ -18,8 +18,8 @@ func SetupRoutes(app *fiber.App) {
 
 	//user routes
 	user.Get("/", controller.GetUser)
-	user.Post("/filter", controller.PushTracker)
-	user.Get("/filter", controller.GetUserFilters)
-	user.Get("/filter/all", controller.GetAllFilters)
+	user.Post("/preference", controller.PushTracker)
+	user.Get("/preference", controller.GetUserPreferences)
+	user.Get("/preference/all", controller.GetAllPreferences)
 
 }

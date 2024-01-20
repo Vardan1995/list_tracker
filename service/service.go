@@ -20,9 +20,9 @@ type ArchiveService interface {
 	// DeleteArchive(archive *entity.Archive) error
 }
 
-type FilterService interface {
-	CreateFilter(filter *entity.Filter) (*entity.Filter, error)
-	GetUserFilter(filter *[]entity.Filter, id uint) error
-	GetFilters(filter *[]entity.Filter) error
-	// DeleteFilter(filter *entity.Filter) error
+type PreferenceService interface {
+	CreatePreference(preference *entity.Preference) (*entity.Preference, error)
+	GetUserPreference(preference *[]entity.Preference, id uint) error
+	GetPreferences(preference *[]entity.Preference) error
+	// DeletePreference(preference *entity.Preference) error
 }

@@ -88,9 +88,9 @@
                 body: raw,
                 redirect: 'follow'
             };
-            fetch("/api/user/filter", requestOptions)
+            fetch("/api/user/preference", requestOptions)
                 .then(response => response.text())
-                .then(result => console.log("filter added successfully"))
+                .then(result => console.log("preference added successfully"))
                 .catch(error => alert(error.message));
         })
 

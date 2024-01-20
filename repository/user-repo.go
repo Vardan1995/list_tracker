@@ -23,9 +23,9 @@ func (*user_repo) FindUser(user *entity.User, id uint) error {
 	return db.First(&user).Where("id = ?", id).Error
 }
 
-func (*user_repo) UserWithFilters(user *entity.User) error {
+func (*user_repo) UserWithPreferences(user *entity.User) error {
 	db := database.DB
-	return db.Model(&user).Preload("Filters").Find(&user).Error
+	return db.Model(&user).Preload("Preferences").Find(&user).Error
 
 }
 
